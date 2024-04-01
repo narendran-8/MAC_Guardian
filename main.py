@@ -1,4 +1,9 @@
+from MAC_lib import support
+
 import netifaces
+import pickle
+import os
+
 
 class Mac_Guardian:
     def __init__(self):
@@ -29,9 +34,19 @@ class Mac_Guardian:
         # Choose the required MAC address
         selected_option = int(input("Select MAC: "))
         selected_mac = list(self.mac_addresses.items()) 
-        print(selected_mac[selected_option][1])
+        mac_add = selected_mac[selected_option][1]
+        # conver string to SHA256 hash
+        self.mac_hash = support.sha256_hash(mac_add)
+
+    def store_hash_value(self):
+        # Store hash value into pickle file
+        file_path = f"{os.getcwd()}/db"
+        with open(file_path, 'wb') as f:
+            pickle.dump(self.mac_hash, f)
+        
 
 mac= Mac_Guardian()
 mac.get_mac_addresses()
 mac.print_mac_addresses()
 mac.select_mac_addresses()
+mac.store_hash_value()
