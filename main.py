@@ -25,6 +25,13 @@ class Mac_Guardian:
             print(f"Interface: [{count}] {interface}, MAC Address: {mac}")
             count +=1
 
+    def select_mac_addresses(self):
+        # Choose the required MAC address
+        selected_option = int(input("Select MAC: "))
+        selected_mac = list(self.mac_addresses.items()) 
+        print(selected_mac[selected_option][1])
+
 mac= Mac_Guardian()
 mac.get_mac_addresses()
 mac.print_mac_addresses()
+mac.select_mac_addresses()
