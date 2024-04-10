@@ -2,8 +2,6 @@ import os
 import hashlib
 import pickle
 
-from MAC_lib import support
-
 import netifaces
 
 class Authentic:

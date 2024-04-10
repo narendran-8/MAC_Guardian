@@ -1,4 +1,4 @@
-from MAC_lib import support
+import hashlib
 
 import netifaces
 import pickle
@@ -30,13 +30,23 @@ class Mac_Guardian:
             print(f"Interface: [{count}] {interface}, MAC Address: {mac}")
             count +=1
 
+    def sha256_hash(self, input_string):
+        # Convert the input string to bytes (UTF-8 encoding)
+        input_bytes = input_string.encode('utf-8')
+        # Calculate the SHA-256 hash
+        sha256_hash = hashlib.sha256(input_bytes)
+        # Get the hexadecimal representation of the hash
+        hash_hex = sha256_hash.hexdigest()
+        print(hash_hex)
+        return hash_hex
+
     def select_mac_addresses(self):
         # Choose the required MAC address
         selected_option = int(input("Select MAC: "))
         selected_mac = list(self.mac_addresses.items()) 
         mac_add = selected_mac[selected_option][1]
         # conver string to SHA256 hash
-        self.mac_hash = support.sha256_hash(mac_add)
+        self.mac_hash = self.sha256_hash(mac_add)
 
     def store_hash_value(self):
         # Store hash value into pickle file
