@@ -7,6 +7,7 @@ def sha256_hash(input_string):
     sha256_hash = hashlib.sha256(input_bytes)
     # Get the hexadecimal representation of the hash
     hash_hex = sha256_hash.hexdigest()
+    print(hash_hex)
     return hash_hex
  
 #  def store_hash_value(hash_value):
