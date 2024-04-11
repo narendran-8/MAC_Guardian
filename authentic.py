@@ -13,6 +13,9 @@ class Authentic:
                 self.string_value = pickle.load(f)
         except FileNotFoundError:
             print("Unable to locate File")
+
+        self.get_mac_addresses()
+        self.check_mac_addresses()
     
 
     def get_mac_addresses(self):
@@ -45,6 +48,5 @@ class Authentic:
         hash_hex = sha256_hash.hexdigest()
         return hash_hex
 
-auth = Authentic()
-auth.get_mac_addresses()
-auth.check_mac_addresses()
+if __name__ == "__main__":
+    auth = Authentic()
